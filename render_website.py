@@ -14,7 +14,7 @@ BOOKS_PER_PAGE = 10
 
 def main():
     load_dotenv()
-    json_path = os.getenv('DATA_PATH', 'static/meta_data.json')
+    json_path = os.getenv('DATA_PATH', 'meta_data.json')
 
     with open(json_path, 'r', encoding='utf-8') as f:
         books = json.load(f)
@@ -48,5 +48,5 @@ if __name__ == '__main__':
     server = Server()
     server.watch('template.html', main)
     server.watch('render_website.py', main)
-    server.watch('static/meta_data.json', main)
+    server.watch('eta_data.json', main)
     server.serve(root='.', default_filename='index.html')
