@@ -10,34 +10,34 @@
 </head>
 
 <body>
-    <div class="container">
-      <nav class="mt-4" aria-label="Навигация по страницам">
-        <ul class="pagination d-flex justify-content-center">
-          {% if current_page > 1 %}
-            <li class="page-item">
-              <a class="page-link" href="index{{ current_page - 1 }}.html" aria-label="Назад">Назад</a>
-            </li>
-          {% else %}
-            <li class="page-item disabled">
-              <span class="page-link">Назад</span>
-            </li>
-          {% endif %}
+  <div class="container">
+    <nav class="mt-4" aria-label="Навигация по страницам">
+      <ul class="pagination d-flex justify-content-center">
+        {% if current_page > 1 %}
+          <li class="page-item">
+            <a class="page-link" href="index{{ current_page - 1 }}.html" aria-label="Назад">Назад</a>
+          </li>
+        {% else %}
+          <li class="page-item disabled">
+            <span class="page-link">Назад</span>
+          </li>
+        {% endif %}
 
-          {% for page in range(1, total_pages + 1) %}
-            <li class="page-item {% if page == current_page %}active{% endif %}">
-              <a class="page-link" href="index{{ page }}.html">{{ page }}</a>
-            </li>
-          {% endfor %}
+        {% for page in range(1, total_pages + 1) %}
+          <li class="page-item {% if page == current_page %}active{% endif %}">
+            <a class="page-link" href="index{{ page }}.html">{{ page }}</a>
+          </li>
+        {% endfor %}
 
-          {% if current_page < total_pages %}
-            <li class="page-item">
-              <a class="page-link" href="index{{ current_page + 1 }}.html" aria-label="Вперёд">Вперёд</a>
-            </li>
-          {% else %}
-            <li class="page-item disabled">
-              <span class="page-link">Вперёд</span>
-            </li>
-          {% endif %}
+        {% if current_page < total_pages %}
+          <li class="page-item">
+            <a class="page-link" href="index{{ current_page + 1 }}.html" aria-label="Вперёд">Вперёд</a>
+          </li>
+        {% else %}
+          <li class="page-item disabled">
+            <span class="page-link">Вперёд</span>
+          </li>
+        {% endif %}
         </ul>
       </nav>
 
