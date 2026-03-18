@@ -1,79 +1,79 @@
 <!DOCTYPE html>
 <html lang="ru">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="../media/img/favicon.ico" type="image/x-icon">
-  <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <title>Онлайн библиотека</title>
-</head>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../media/img/favicon.ico" type="image/x-icon">
+    <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <title>Онлайн библиотека</title>
+  </head>
 
-<body>
-  <div class="container">
-    <nav class="mt-4" aria-label="Навигация по страницам">
-      <ul class="pagination d-flex justify-content-center">
-        {% if current_page > 1 %}
-          <li class="page-item">
-            <a class="page-link" href="index{{ current_page - 1 }}.html" aria-label="Назад">Назад</a>
-          </li>
-        {% else %}
-          <li class="page-item disabled">
-            <span class="page-link">Назад</span>
-          </li>
-        {% endif %}
+  <body>
+    <div class="container">
+      <nav class="mt-4" aria-label="Навигация по страницам">
+        <ul class="pagination d-flex justify-content-center">
+          {% if current_page > 1 %}
+            <li class="page-item">
+              <a class="page-link" href="index{{ current_page - 1 }}.html" aria-label="Назад">Назад</a>
+            </li>
+          {% else %}
+            <li class="page-item disabled">
+              <span class="page-link">Назад</span>
+            </li>
+          {% endif %}
 
-        {% for page in range(1, total_pages + 1) %}
-          <li class="page-item {% if page == current_page %}active{% endif %}">
-            <a class="page-link" href="index{{ page }}.html">{{ page }}</a>
-          </li>
-        {% endfor %}
+          {% for page in range(1, total_pages + 1) %}
+            <li class="page-item {% if page == current_page %}active{% endif %}">
+              <a class="page-link" href="index{{ page }}.html">{{ page }}</a>
+            </li>
+          {% endfor %}
 
-        {% if current_page < total_pages %}
-          <li class="page-item">
-            <a class="page-link" href="index{{ current_page + 1 }}.html" aria-label="Вперёд">Вперёд</a>
-          </li>
-        {% else %}
-          <li class="page-item disabled">
-            <span class="page-link">Вперёд</span>
-          </li>
-        {% endif %}
-      </ul>
-    </nav>
+          {% if current_page < total_pages %}
+            <li class="page-item">
+              <a class="page-link" href="index{{ current_page + 1 }}.html" aria-label="Вперёд">Вперёд</a>
+            </li>
+          {% else %}
+            <li class="page-item disabled">
+              <span class="page-link">Вперёд</span>
+            </li>
+          {% endif %}
+        </ul>
+      </nav>
 
-    {% for row in rows %}
-      <div class="row">
-        {% for book in row %}
-          <div class="col-md-6">
-            <div class="card mb-3" style="max-width: 540px;">
-              <div class="row no-gutters">
-                <div class="col-md-4">
-                  <img src="../media/{{ book.img_src | urlencode}}" class="card-img" alt="{{ book.title }}">
-                </div>
-                <div class="col-md-8">
-                  <div class="card-body">
-                    <h5 class="card-title">{{ book.title }}</h5>
-                    <p class="card-text">{{ book.author }}</p>
-                    <p class="card-text">
-                      {% for genre in book.genres.split(', ') %}
-                        <span class="badge bg-secondary">{{ genre }}</span>
-                      {% endfor %}
-                    </p>
-                    <p class="card-text">
-                      <small class="text-muted">
-                        <a href="../media/{{ book.book_path | urlencode }}" target="_blank">Читать</a>
-                      </small>
-                    </p>
+      {% for row in rows %}
+        <div class="row">
+          {% for book in row %}
+            <div class="col-md-6">
+              <div class="card mb-3" style="max-width: 540px;">
+                <div class="row no-gutters">
+                  <div class="col-md-4">
+                    <img src="../media/{{ book.img_src | urlencode}}" class="card-img" alt="{{ book.title }}">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h5 class="card-title">{{ book.title }}</h5>
+                      <p class="card-text">{{ book.author }}</p>
+                      <p class="card-text">
+                        {% for genre in book.genres.split(', ') %}
+                          <span class="badge bg-secondary">{{ genre }}</span>
+                        {% endfor %}
+                      </p>
+                      <p class="card-text">
+                        <small class="text-muted">
+                          <a href="../media/{{ book.book_path | urlencode }}" target="_blank">Читать</a>
+                        </small>
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        {% endfor %}
-      </div>
-    {% endfor %}
-  </div>
-  <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
-</body>
+          {% endfor %}
+        </div>
+      {% endfor %}
+    </div>
+    <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
+  </body>
 
 </html>
